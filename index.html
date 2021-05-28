@@ -70,9 +70,13 @@
     </style>
   </head>
 
-  <body onresize="size()"><img id="img" src="img909.webp" alt="the background of the website, and the main content">
+  <body onresize="size()"><img id="img" src="img416.webp" alt="the background of the website, and the main content">
     <div id="buttons" style="width: 1349px; height: 2376px;">
       <div class="hey" style="left: 66.642%; top: 2.31481%; width: 13.6397%; padding-top: 12.7588%;">
+
+
+
+
 
 
 
@@ -90,8 +94,16 @@
 
 
 
+
+
+
+
       </div>
       <div class="hey" style="left: 82.6538%; top: 2.3569%; width: 13.6397%; padding-top: 12.7588%;" onclick="window.open(&quot;https://www.facebook.com/sheltereilat/&quot;)">
+
+
+
+
 
 
 
@@ -108,6 +120,10 @@
 
 
 
+
+
+
+
       </div>
       <div class="hey" style="left: -33.9511%; top: 81.3552%; width: 95.4781%; padding-top: 12.3064%;" onclick="window.open(&quot;https://www.shelterhostel.com/en/&quot;)">
 
@@ -117,8 +133,16 @@
 
 
 
+
+
+
+
       </div>
       <div class="hey" style="left: -33.9511%; top: 88.9731%; width: 95.4781%; padding-top: 12.3064%;" onclick="window.open(&quot;https://www.google.com/maps/place/%D7%94%D7%A9%D7%9C%D7%98%D7%A8%E2%80%AD/@29.5562906,34.9494131,17z/data=!4m18!1m9!3m8!1s0x15007203116009a9:0x5986b21f6376dcab!2z15TXqdec15jXqA!5m2!4m1!1i2!8m2!3d29.5562853!4d34.9473381!3m7!1s0x15007203116009a9:0x5986b21f6376dcab!5m2!4m1!1i2!8m2!3d29.5562853!4d34.9473381?hl=iw&quot;)">
+
+
+
+
 
 
 
@@ -236,6 +260,35 @@
           window.postMessage({
             id,
             token: '0.6809345715123325',
+            methodName,
+            methodArgs
+          }, 'http://localhost:3000');
+          return new Promise(resolve => {
+            const listener = window.addEventListener('message', event => {
+              const data = event.data;
+              if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+              window.removeEventListener('message', listener);
+              resolve(data.result);
+            });
+          });
+        }
+      };
+    </script>
+
+
+    <script>
+      mendeleyWebImporter = {
+        downloadPdfs(t) {
+          return this._call('downloadPdfs', [t]);
+        },
+        open() {
+          return this._call('open', []);
+        },
+        _call(methodName, methodArgs) {
+          const id = Math.random();
+          window.postMessage({
+            id,
+            token: '0.9168556148124198',
             methodName,
             methodArgs
           }, 'http://localhost:3000');
